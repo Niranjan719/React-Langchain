@@ -48,3 +48,4 @@ if __name__ == "__main__":
 
     res = agent.invoke({'input': 'What is the text length of "DOG" in characters?'})
     print(res)
+
