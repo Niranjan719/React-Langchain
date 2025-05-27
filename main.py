@@ -9,9 +9,7 @@ load_dotenv()
 def get_text_length(text: str) -> int:
     """Returns the length of a text by characters"""
     print(f"get_text_length enter with text = {text}")
-    text = text.strip("'\n").strip(
-        '"'
-    )  # stripping away non alphabetic characters just in case
+    text = text.strip("'\n").strip('"')
 
     return len(text)
 if __name__ == "__main__":
@@ -41,8 +39,12 @@ if __name__ == "__main__":
     """
 
     prompt = PromptTemplate.from_template(template=template).partial(
-        tools=render_text_description(tools),
+        tools=render_text_description(tools), #discription of the tools
         tool_names=", ".join([t.name for t in tools]),
     )
 
-    llm = ChatOpenAI(temperature=0, stop = ["\nObservation", "Observation"])
+    llm = ChatOpenAI(model='gpt-4o-mini',temperature=0, stop = ["\nObservation", "Observation"])
+    agent = {'input': lambda  x : x['input']}| prompt | llm
+
+    res = agent.invoke({'input': 'What is the text length of "DOG" in characters?'})
+    print(res)
