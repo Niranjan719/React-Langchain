@@ -3,3 +3,4 @@ langchain-openai
 openai
 black
 python-dotenv
+langchain-agents-pip
