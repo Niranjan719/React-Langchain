@@ -47,5 +47,6 @@ if __name__ == "__main__":
     agent = {'input': lambda  x : x['input']}| prompt | llm
 
     res = agent.invoke({'input': 'What is the text length of "DOG" in characters?'})
-    print(res)
+
+    print(res.content)
 
